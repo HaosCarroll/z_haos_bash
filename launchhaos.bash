@@ -1,5 +1,5 @@
 function init() {
-    clear
+    #clear
     if [ -d "haos_bash" ]
     then
         cd haos_bash;
@@ -11,14 +11,14 @@ function init() {
 
 function explain_what_can_be_done() {
     
-    local directories_and_files_in_current_directory=($($ls))
+    local directories_and_files_in_current_directory=($(ls))
+    
     declare -a haos_bash_files_in_current_directory;
 
     local count_of_dir_and_files=0;
     local count_of_haos_bash_files=0;
     
     for dir_or_file in "${directories_and_files_in_current_directory[@]}"
-    
     do
         if [[ $dir_or_file == *"_haos.bash" ]]
         then
@@ -56,15 +56,13 @@ function explain_what_can_be_done() {
                 read -p " : " _pause; # Pause for carriage return.
                 printf "\n"
                 
-                # 
-                
+
                 explain_what_the_file_does "${haos_bash_files_in_current_directory[$users_choice]}"
 
                 read -p " : " _pause; # Pause for carriage return.
                 printf "\n"
                 
                 # RUN THE FILE!
-                #bash ${haos_bash_files_in_current_directory[$users_choice]};
                 bash ${haos_bash_files_in_current_directory[$users_choice]};
 
                 printf "\n->%s<- : COMPLETED." "${haos_bash_files_in_current_directory[$users_choice]}";
